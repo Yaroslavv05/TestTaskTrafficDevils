@@ -1,0 +1,12 @@
+sqlalchemy
+fastapi
+bcrypt
+httpx
+psycopg2-binary
+python-dotenv
+uvicorn
+asyncpg
+python-multipart
+passlib
+pydantic
+pyjwt
