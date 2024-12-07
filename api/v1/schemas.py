@@ -11,3 +11,12 @@ class RegisterResponse(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+class RequestData(BaseModel):
+    bottoken: str
+    chatid: str
+    message: str
+
+class DataResponse(BaseModel):
+    status: str
+    response: str

@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from databases.models import User, Role
+from databases.models import User, Role, Request
 from fastapi import HTTPException
 from utils.security import hash_password
 
@@ -24,6 +24,19 @@ class CreateRecords:
         await db.commit()
         return new_user
 
+    async def create_request(self, db: AsyncSession, bottoken: str, chatid: str, message: str, response_text: str, current_user: User):
+        try:
+            log_entry = Request(
+                bottoken=bottoken,
+                chatid=chatid,
+                message=message,
+                telegram_response=response_text,
+                user_id=current_user.id,
+            )
+            db.add(log_entry)
+            await db.commit()
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Error logging request: {str(e)}")
 
 async def get_create_records():
     return CreateRecords()
