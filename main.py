@@ -3,11 +3,6 @@ import uvicorn
 from fastapi import FastAPI
 from api.v1.auth import router as auth_router_v1
 from api.v1.requests import router as requests_router_v1
-from core.database import init_db, init_db_roles
-import asyncio
-
-asyncio.run(init_db)
-asyncio.run(init_db_roles)
 
 app = FastAPI(
     title="Test Task Traffic Devils",
