@@ -20,3 +20,10 @@ class RequestData(BaseModel):
 class DataResponse(BaseModel):
     status: str
     response: str
+
+class ChangePasswordRequest(BaseModel):
+    previous_password:str
+    new_password: str
+
+class ChangeUsernameRequest(BaseModel):
+    new_username: str

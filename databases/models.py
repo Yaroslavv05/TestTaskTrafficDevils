@@ -15,6 +15,8 @@ class User(Base):
     password_hash = Column(String(255), nullable=False)
     role_id = Column(Integer, ForeignKey("roles.id"))
     role = relationship("Role")
+    admin_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    admin = relationship("User", remote_side=[id]) 
 
 class Request(Base):
     __tablename__ = "requests"
